@@ -4,13 +4,19 @@ class Constants {
     static final String NAMES = Utilities.getProjectPath().concat("/vkdata/names1.txt");
 
     static final String FRIENDS_FILE_PATHS [] = {
-            Utilities.getProjectPath().concat("/vkdata/friends14.txt"),
-            Utilities.getProjectPath().concat("/vkdata/friends7.txt"),
+            Utilities.getProjectPath().concat("/vkdata/friends18.txt"),
+            Utilities.getProjectPath().concat("/vkdata/friends19.txt"),
             Utilities.getProjectPath().concat("/vkdata/friends8.txt"),
             Utilities.getProjectPath().concat("/vkdata/friends9.txt"),
             Utilities.getProjectPath().concat("/vkdata/friends10.txt"),
             Utilities.getProjectPath().concat("/vkdata/friends11.txt"),
             Utilities.getProjectPath().concat("/vkdata/friends12.txt"),
             Utilities.getProjectPath().concat("/vkdata/friends13.txt"),
+    };
+
+
+    static final String []  CREDENTIALS = {
+            "avtobolashvili1297@gmail.com ".concat("gameri21"),
+            "995551800181 ".concat("azzdnipro3901")
     };
 }

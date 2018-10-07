@@ -14,7 +14,7 @@ class GenericScrapper {
 
     static void innerScrapper(WebDriver driver, PrintWriter printWriter, JavascriptExecutor executor, int id)throws InterruptedException, NoSuchElementException {
         int k = 0, limit = 15;
-        OUTER_LOOP:for (int i = 0; i < 10; i++) {
+        OUTER_LOOP:for (int i = 0; i < 20; i++) {
             for (int j = 0; j < limit; j++) {
                 WebElement person = driver.findElement(By.xpath("//div[@id='list_content']/div["+String.valueOf(i+1)+"]/div[" + String.valueOf(j+1) + "]/div[4]/div/a"));
                 if(Objects.isNull(person)) {
@@ -27,7 +27,7 @@ class GenericScrapper {
             for (int j = 0; j < 20; j++) {
                 executor.executeScript("window.scrollBy(0,450)", "");
             }
-            Thread.sleep(random.nextInt(500));
+            Thread.sleep(random.nextInt(300));
         }
     }
 

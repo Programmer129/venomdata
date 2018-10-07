@@ -3,50 +3,85 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Scrapper {
 
-    public static void main(String[] args) throws InterruptedException, IOException {
-//        WebDriver driver = Utilities.getDriver();
-//
-//        PeopleTraversal traversal = new PeopleTraversal(driver);
-//
-//        Utilities.authorise(driver);
-//
-//        traversal.traverse(800, 1800);
+    private static String [] FRIENDS = {
+      Utilities.getProjectPath().concat("/vkdata/friends.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends1.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends2.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends3.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends4.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends5.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends6.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends7.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends8.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends9.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends10.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends11.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends12.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends13.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends14.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends15.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends16.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends17.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends18.txt"),
+      Utilities.getProjectPath().concat("/vkdata/friends19.txt")
+    };
 
-        Thread [] jobbers = new Thread[1];
+    public static void main(String[] args) throws IOException {
 
-        for (int i = 0, j = 800; i < jobbers.length; i++, j+= 1000) {
-            jobbers[i] = new Thread(jobber(904, j + 1000, Constants.FRIENDS_FILE_PATHS[i]), "Thread: ".concat(String.valueOf(i + 1)));
-            jobbers[i].start();
+        PrintWriter writer = Utilities.getWriter(Utilities.getProjectPath().concat("/vkdata/allpeople.txt"));
+
+        for (String FRIEND : FRIENDS) {
+            BufferedReader reader = Utilities.getFileReader(FRIEND);
+            String line;
+            while ((line = reader.readLine()) != null) {
+                writer.println(line.split(": ")[1]);
+            }
+
+            reader.close();
         }
+
+        writer.close();
+
+//        Thread [] jobbers = new Thread[2];
+//
+//        for (int i = 0, j = 800; i < jobbers.length; i++, j+= 4000) {
+//            if(i == 0)
+//                jobbers[i] = new Thread(jobber(4420, 8000, Constants.FRIENDS_FILE_PATHS[i], Constants.CREDENTIALS[i]), "Thread: ".concat(String.valueOf(i + 1)));
+//            else
+//                jobbers[i] = new Thread(jobber(9694, 11000, Constants.FRIENDS_FILE_PATHS[i], Constants.CREDENTIALS[i]), "Thread: ".concat(String.valueOf(i + 1)));
+//            jobbers[i].start();
+//        }
     }
 
-    private static synchronized Runnable jobber(int from, int to, String path) {
+    private static synchronized Runnable jobber(int from, int to, String path, String credentials) {
         return () -> {
             WebDriver driver = Utilities.getDriver();
 
             PeopleTraversal traversal = new PeopleTraversal(driver);
 
             try {
-                Utilities.authorise(driver);
+                Utilities.authorise(driver, credentials);
                 traversal.traverse(from, to, path);
-            } catch (InterruptedException | IOException e) {
-                e.printStackTrace();
+            } catch (InterruptedException | IOException | WebDriverException e) {
+                System.out.println(e.getMessage());
             }
         };
     }
 
-    private synchronized Runnable jobber(char from, char to) {
+    private synchronized Runnable jobber(char from, char to, String credentials) {
         return () -> {
             try {
                 WebDriver driver = Utilities.getDriver();
 
-                Utilities.authorise(driver);
+                Utilities.authorise(driver, credentials);
 
                 Thread.sleep(1000);
 

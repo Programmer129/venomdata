@@ -39,19 +39,20 @@ class Utilities {
         System.setProperty("webdriver.chrome.driver", Utilities.getProjectPath().concat("/chromedriver"));
 
         ChromeOptions options = new ChromeOptions();
-    //    options.addArguments("--headless");
+        options.addArguments("--headless");
 
         return new ChromeDriver(options);
     }
 
-    static void authorise(WebDriver driver) throws InterruptedException {
+    static void authorise(WebDriver driver, String credential) throws InterruptedException {
+        String [] auth = credential.split(" ");
         driver.get("https://vk.com/");
 
-        driver.findElement(By.id("index_email")).sendKeys("avtobolashvili1297@gmail.com");
+        driver.findElement(By.id("index_email")).sendKeys(auth[0]);
 
         Thread.sleep(500);
 
-        driver.findElement(By.id("index_pass")).sendKeys("gameri21");
+        driver.findElement(By.id("index_pass")).sendKeys(auth[1]);
 
         Thread.sleep(600);
 

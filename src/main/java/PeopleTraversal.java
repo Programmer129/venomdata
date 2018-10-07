@@ -33,7 +33,33 @@ class PeopleTraversal {
         AtomicInteger personId = new AtomicInteger(1);
         while (Objects.nonNull(name = reader.readLine())) {
             String query = name.trim();
-            if(query.startsWith("Aaa") || query.endsWith("Aaa")) {
+            if(query.length() == 0) {
+                personId.incrementAndGet();
+                continue;
+            }
+            String [] parts = query.split(" ");
+            if(parts.length > 2 ||
+                    parts.length < 1      ||
+                    query.contains("Aaa") ||
+                    query.contains("Aab") ||
+                    query.contains("Aaf") ||
+                    query.contains("Aag") ||
+                    query.contains("Aaj") ||
+                    query.contains("Aak") ||
+                    query.contains("Aal") ||
+                    query.contains("Aam") ||
+                    query.contains("Aao") ||
+                    query.contains("Aap") ||
+                    query.contains("Aaq") ||
+                    query.contains("Aar") ||
+                    query.contains("Aas") ||
+                    query.contains("Aat") ||
+                    query.contains("Aau") ||
+                    query.contains("Aav") ||
+                    query.contains("Aax") ||
+                    query.contains("Aay") ||
+                    query.contains("Aaz")) {
+                personId.incrementAndGet();
                 continue;
             }
             if (personId.intValue() > from && personId.intValue() <= to) {
@@ -54,10 +80,11 @@ class PeopleTraversal {
 //                    writer.println(info);
                 } catch (WebDriverException e) {
                     System.out.println("No such element!");
+                    personId.incrementAndGet();
+                    continue;
                 }
 
                 scrapeFriendsPerPeople(driver, friendsWriter, personId.intValue());
-
                 driver.navigate().back();
                 driver.navigate().back();
 
@@ -88,7 +115,7 @@ class PeopleTraversal {
         return result.insert(result.length() - 1, "}").toString();
     }
 
-    private void scrapeFriendsPerPeople(WebDriver driver, PrintWriter writer, int personId) {
+    private void scrapeFriendsPerPeople(WebDriver driver, PrintWriter writer, int personId) throws InterruptedException {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         try {
             driver.findElement(By.xpath("//div[@id='narrow_column']/div[2]/aside/div/a[2]")).click();
@@ -96,8 +123,8 @@ class PeopleTraversal {
             Thread.sleep(1000);
 
             GenericScrapper.innerScrapper(driver, writer, executor, personId);
-        } catch (NoSuchElementException | InterruptedException e) {
-            System.out.println("No Element was found !");
+        } catch (NoSuchElementException e) {
+            System.out.println("No Such element !");
         }
     }
 }
