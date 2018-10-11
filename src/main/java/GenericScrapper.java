@@ -1,7 +1,9 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 import java.io.PrintWriter;
@@ -49,6 +51,20 @@ class GenericScrapper {
             limit = 19;
             Thread.sleep(random.nextInt(2000));
         }
+    }
+
+    static void searchPerson(WebDriver driver, String query) throws InterruptedException, WebDriverException {
+        Thread.sleep(random.nextInt(1000));
+        driver.findElement(By.xpath("//div[@id='search_query_wrap']/div/div/input")).clear();
+        Thread.sleep(random.nextInt(1000));
+        driver.findElement(By.xpath("//div[@id='search_query_wrap']/div/div/input")).sendKeys(query);
+        Thread.sleep(random.nextInt(1000));
+        driver.findElement(By.xpath("//div[@id='search_query_wrap']/div/div/input")).sendKeys(Keys.ENTER);
+        Thread.sleep(random.nextInt(1000));
+
+        driver.findElement(By.xpath("//div[@id='results']/div/div[3]/div/a")).click();
+
+        Thread.sleep(random.nextInt(1000));
     }
 
 }

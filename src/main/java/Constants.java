@@ -1,7 +1,13 @@
 class Constants {
     static final String FILE_PATH = Utilities.getProjectPath().concat("/vkdata/names.txt");
-    static final String RES_FILE_PATH = Utilities.getProjectPath().concat("/vkdata/fullinfo6.txt");
+    static final String [] RES_FILE_PATH = {
+            Utilities.getProjectPath().concat("/vkdata/fullinfo.txt"),
+            Utilities.getProjectPath().concat("/vkdata/fullinfo1.txt"),
+            Utilities.getProjectPath().concat("/vkdata/fullinfo2.txt"),
+            Utilities.getProjectPath().concat("/vkdata/fullinfo3.txt"),
+    };
     static final String NAMES = Utilities.getProjectPath().concat("/vkdata/names1.txt");
+    static final String ALL_PEOPLE = Utilities.getProjectPath().concat("/vkdata/allpeople.txt");
 
     static final String FRIENDS_FILE_PATHS [] = {
             Utilities.getProjectPath().concat("/vkdata/friends18.txt"),

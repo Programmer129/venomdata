@@ -5,60 +5,23 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Scrapper {
 
-    private static String [] FRIENDS = {
-      Utilities.getProjectPath().concat("/vkdata/friends.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends1.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends2.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends3.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends4.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends5.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends6.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends7.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends8.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends9.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends10.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends11.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends12.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends13.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends14.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends15.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends16.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends17.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends18.txt"),
-      Utilities.getProjectPath().concat("/vkdata/friends19.txt")
-    };
+    public static void main(String[] args) {
+        Thread [] jobbers = new Thread[4];
 
-    public static void main(String[] args) throws IOException {
+        jobbers[0] = new Thread(jobber(382, 50000, Constants.RES_FILE_PATH[1], Constants.CREDENTIALS[0]));
+      //  jobbers[1] = new Thread(jobber(1000001, 150000, Constants.RES_FILE_PATH[1], Constants.CREDENTIALS[0]));
+        jobbers[2] = new Thread(jobber(50001 + 588, 100000, Constants.RES_FILE_PATH[3], Constants.CREDENTIALS[1]));
+        //jobbers[3] = new Thread(jobber(150001, 200000, Constants.RES_FILE_PATH[3], Constants.CREDENTIALS[1]));
 
-        PrintWriter writer = Utilities.getWriter(Utilities.getProjectPath().concat("/vkdata/allpeople.txt"));
-
-        for (String FRIEND : FRIENDS) {
-            BufferedReader reader = Utilities.getFileReader(FRIEND);
-            String line;
-            while ((line = reader.readLine()) != null) {
-                writer.println(line.split(": ")[1]);
-            }
-
-            reader.close();
-        }
-
-        writer.close();
-
-//        Thread [] jobbers = new Thread[2];
-//
-//        for (int i = 0, j = 800; i < jobbers.length; i++, j+= 4000) {
-//            if(i == 0)
-//                jobbers[i] = new Thread(jobber(4420, 8000, Constants.FRIENDS_FILE_PATHS[i], Constants.CREDENTIALS[i]), "Thread: ".concat(String.valueOf(i + 1)));
-//            else
-//                jobbers[i] = new Thread(jobber(9694, 11000, Constants.FRIENDS_FILE_PATHS[i], Constants.CREDENTIALS[i]), "Thread: ".concat(String.valueOf(i + 1)));
-//            jobbers[i].start();
-//        }
+        jobbers[0].start();
+        //jobbers[1].start();
+        jobbers[2].start();
+        //jobbers[3].start();
     }
 
     private static synchronized Runnable jobber(int from, int to, String path, String credentials) {
@@ -69,7 +32,7 @@ public class Scrapper {
 
             try {
                 Utilities.authorise(driver, credentials);
-                traversal.traverse(from, to, path);
+                traversal.minTraverse(from, to, path , Constants.ALL_PEOPLE);
             } catch (InterruptedException | IOException | WebDriverException e) {
                 System.out.println(e.getMessage());
             }

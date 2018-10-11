@@ -1,6 +1,5 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -24,7 +23,7 @@ class PeopleTraversal {
 
      void traverse(int from, int to, String path) throws InterruptedException, IOException {
         BufferedReader reader = Utilities.getFileReader(Constants.FILE_PATH);
-        PrintWriter writer = Utilities.getWriter(Constants.RES_FILE_PATH);
+        PrintWriter writer = Utilities.getWriter(Constants.RES_FILE_PATH[0]);
         PrintWriter friendsWriter = Utilities.getWriter(path);
 
         driver.navigate().to("https://vk.com/search?c%5Bper_page%5D=40&c%5Bq%5D=Dmitry%20Kleschenok&c%5Bsection%5D=people");
@@ -65,16 +64,7 @@ class PeopleTraversal {
             if (personId.intValue() > from && personId.intValue() <= to) {
                 try {
                     Utilities.log(query, Thread.currentThread().getName());
-                    driver.findElement(By.xpath("//div[@id='search_query_wrap']/div/div/input")).clear();
-                    Thread.sleep(1000);
-                    driver.findElement(By.xpath("//div[@id='search_query_wrap']/div/div/input")).sendKeys(query);
-                    Thread.sleep(2000);
-                    driver.findElement(By.xpath("//div[@id='search_query_wrap']/div/div/input")).sendKeys(Keys.ENTER);
-                    Thread.sleep(1000);
-
-                    driver.findElement(By.xpath("//div[@id='results']/div/div[3]/div/a")).click();
-
-                    Thread.sleep(2000);
+                    GenericScrapper.searchPerson(driver, query);
 
 //                    String info = innerScrapper(driver);
 //                    writer.println(info);
@@ -98,21 +88,85 @@ class PeopleTraversal {
         friendsWriter.close();
     }
 
-    private String innerScrapper(WebDriver driver) throws NoSuchElementException {
+    void minTraverse(int to, int from, String path, String readPath) throws IOException, InterruptedException {
+        PrintWriter writer = Utilities.getWriter(path);
+        BufferedReader reader = Utilities.getFileReader(readPath);
+
+        driver.navigate().to("https://vk.com/search?c%5Bper_page%5D=40&c%5Bq%5D=Dmitry%20Kleschenok&c%5Bsection%5D=people");
+
+        AtomicInteger personId = new AtomicInteger(1);
+        String name;
+        while ((name = reader.readLine()) != null) {
+            if(personId.intValue() >= to && personId.intValue() <= from) {
+                String query = name.trim();
+                try {
+                    GenericScrapper.searchPerson(driver, query);
+
+                    Thread.sleep(500);
+
+                    String info = parseElementsList();
+
+                    Thread.sleep(5000);
+
+                    writer.println(info);
+
+                    driver.navigate().back();
+                } catch (WebDriverException e) {
+                    System.out.println(e.getMessage());
+                    writer.println("NAN");
+                }
+            }
+            personId.incrementAndGet();
+        }
+
+        writer.close();
+        reader.close();
+
+        driver.quit();
+    }
+
+    private String parseElementsList() throws InterruptedException {
         List<WebElement> elements = new ArrayList<>();
-        elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[1]/div")));
-        elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[1]/div[2]/a[1]")));
-        elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[2]/div")));
-        elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[2]/div[2]/a[1]")));
-        elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[3]/div")));
-        elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[3]/div[2]/a[1]")));
+
+        innerScrapper(driver, elements);
 
         StringBuilder result = new StringBuilder("{ ");
         for (int i = 0; i < elements.size(); i++) {
-            result.append(elements.get(i).getText()).append(i % 2 == 0 ? ":" : ",");
+            if(elements.get(i).getText() != null) {
+                result.append(elements.get(i).getText()).append(" ");
+            }
         }
 
-        return result.insert(result.length() - 1, "}").toString();
+        return result.insert(result.length() - 1, " }").toString();
+    }
+
+    private void innerScrapper(WebDriver driver, List<WebElement> elements) throws InterruptedException {
+        try {
+            elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[1]/div")));
+            elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[1]/div[2]/a[1]")));
+            elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[1]/div[2]/a[2]")));
+            elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[2]/div")));
+            elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[2]/div[2]/a")));
+            elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[3]/div")));
+            elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[3]/div[2]/a")));
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            driver.findElement(By.cssSelector("#profile_short > div.profile_more_info > a > span.profile_label_more")).click();
+
+            elements.add(driver.findElement(By.xpath("//*[@id=\"profile_full\"]/div/div[2]/div[1]/div[1]")));
+            elements.add(driver.findElement(By.xpath("//*[@id=\"profile_full\"]/div/div[2]/div[1]/div[2]")));
+            elements.add(driver.findElement(By.xpath("//*[@id=\"profile_full\"]/div/div[2]/div[2]/div[1]")));
+            elements.add(driver.findElement(By.xpath("//*[@id=\"profile_full\"]/div/div[2]/div[2]/div[2]")));
+            elements.add(driver.findElement(By.xpath("//*[@id=\"profile_full\"]/div/div[2]/div[3]/div[1]")));
+            elements.add(driver.findElement(By.xpath("//*[@id=\"profile_full\"]/div/div[2]/div[3]/div[2]")));
+            elements.add(driver.findElement(By.xpath("//*[@id=\"profile_full\"]/div/div[2]/div[4]/div[1]")));
+            elements.add(driver.findElement(By.xpath("//*[@id=\"profile_full\"]/div/div[2]/div[4]/div[2]")));
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void scrapeFriendsPerPeople(WebDriver driver, PrintWriter writer, int personId) throws InterruptedException {
