@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5261084e-5156-4516-971d-2dbefdddc0c7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GenericScrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GenericScrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PeopleTraversal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PeopleTraversal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Scrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Scrapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Utilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Utilities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GenericScrapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GenericScrapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PeopleTraversal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/PeopleTraversal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Scrapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Scrapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Utilities.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Utilities.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vkdata/allpeople.txt" beforeDir="false" afterPath="$PROJECT_DIR$/vkdata/allpeople.txt" afterDir="false" />
-    </list>
+    <list default="true" id="5261084e-5156-4516-971d-2dbefdddc0c7" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -78,7 +64,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="gitignore" value="1" />
+          <entry key="gitignore" value="3" />
           <entry key="java" value="70" />
           <entry key="snippet" value="1" />
           <entry key="txt" value="196" />
@@ -88,7 +74,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JAVA" value="70" />
-          <entry key="PLAIN_TEXT" value="197" />
+          <entry key="PLAIN_TEXT" value="199" />
           <entry key="Scratch" value="1" />
           <entry key="XML" value="1" />
         </counts>
@@ -96,7 +82,7 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Kotlin Console" value="24" />
-          <entry key="gitignore" value="41" />
+          <entry key="gitignore" value="58" />
           <entry key="java" value="3109" />
           <entry key="txt" value="76" />
         </counts>
@@ -105,7 +91,7 @@
         <counts>
           <entry key="JAVA" value="3109" />
           <entry key="Kotlin" value="24" />
-          <entry key="PLAIN_TEXT" value="117" />
+          <entry key="PLAIN_TEXT" value="134" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -116,37 +102,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Scrapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/PeopleTraversal.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="108" column="39" lean-forward="true" selection-start-line="108" selection-start-column="39" selection-end-line="108" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#569#570#0" expanded="true" />
-                <element signature="e#605#606#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+            <state relative-caret-position="60">
+              <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -258,7 +218,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1365" />
+    <option name="x" value="-1" />
     <option name="y" value="751" />
     <option name="width" value="1368" />
     <option name="height" value="786" />
@@ -306,7 +266,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539256672366" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539257075378" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -385,15 +345,15 @@
       <workItem from="1539109177324" duration="3635000" />
       <workItem from="1539203394616" duration="2734000" />
       <workItem from="1539244796405" duration="32000" />
-      <workItem from="1539255988575" duration="784000" />
+      <workItem from="1539255988575" duration="1053000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118526000" />
+    <option name="totallyTimeSpent" value="119007000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1365" y="751" width="1368" height="786" extended-state="6" />
+    <frame x="-1" y="751" width="1368" height="786" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19912152" />
@@ -410,7 +370,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.8262774" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.7080292" />
       <window_info anchor="bottom" id="Docker" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32846716" />
@@ -722,6 +682,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/PeopleTraversal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-20">
+          <caret line="108" column="39" lean-forward="true" selection-start-line="108" selection-start-column="39" selection-end-line="108" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#569#570#0" expanded="true" />
+            <element signature="e#605#606#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Scrapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -732,15 +704,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/PeopleTraversal.java">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="37" lean-forward="true" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#569#570#0" expanded="true" />
-            <element signature="e#605#606#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="60">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
         </state>
       </provider>
     </entry>

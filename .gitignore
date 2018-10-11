@@ -1,5 +1,5 @@
-target/*
+/target
 chromedriver
 *.iml
-.idea/*
-vkdata/*
+.idea
+/vkdata
