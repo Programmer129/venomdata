@@ -11,27 +11,35 @@ import java.io.PrintWriter;
 public class Scrapper {
 
     public static void main(String[] args) {
-        Thread [] jobbers = new Thread[4];
+        Thread [] jobbers = new Thread[8];
 
-        jobbers[0] = new Thread(jobber(382, 50000, Constants.RES_FILE_PATH[1], Constants.CREDENTIALS[0]));
-      //  jobbers[1] = new Thread(jobber(1000001, 150000, Constants.RES_FILE_PATH[1], Constants.CREDENTIALS[0]));
-        jobbers[2] = new Thread(jobber(50001 + 588, 100000, Constants.RES_FILE_PATH[3], Constants.CREDENTIALS[1]));
-        //jobbers[3] = new Thread(jobber(150001, 200000, Constants.RES_FILE_PATH[3], Constants.CREDENTIALS[1]));
+        jobbers[0] = new Thread(jobber(5000, 10000, Constants.RES_FILE_PATH[0], Constants.CREDENTIALS[2]));
+        jobbers[1] = new Thread(jobber(10001, 15000, Constants.RES_FILE_PATH[1], Constants.CREDENTIALS[0]));
+        jobbers[2] = new Thread(jobber(15001, 20000, Constants.RES_FILE_PATH[2], Constants.CREDENTIALS[1]));
+        jobbers[3] = new Thread(jobber(20001, 25000, Constants.RES_FILE_PATH[3], Constants.CREDENTIALS[1]));
+        jobbers[4] = new Thread(jobber(25001, 30000, Constants.RES_FILE_PATH[4], Constants.CREDENTIALS[1]));
+        jobbers[5] = new Thread(jobber(30001, 35000, Constants.RES_FILE_PATH[5], Constants.CREDENTIALS[1]));
+        jobbers[6] = new Thread(jobber(35001, 40000, Constants.RES_FILE_PATH[6], Constants.CREDENTIALS[1]));
+        jobbers[7] = new Thread(jobber(40001, 45000, Constants.RES_FILE_PATH[7], Constants.CREDENTIALS[1]));
 
         jobbers[0].start();
-        //jobbers[1].start();
-        jobbers[2].start();
-        //jobbers[3].start();
+//        jobbers[1].start();
+//        jobbers[2].start();
+//        jobbers[3].start();
+//        jobbers[4].start();
+//        jobbers[5].start();
+//        jobbers[6].start();
+//        jobbers[7].start();
     }
 
-    private static synchronized Runnable jobber(int from, int to, String path, String credentials) {
+    private static Runnable jobber(int from, int to, String path, String credentials) {
         return () -> {
             WebDriver driver = Utilities.getDriver();
 
             PeopleTraversal traversal = new PeopleTraversal(driver);
 
             try {
-                Utilities.authorise(driver, credentials);
+              //  Utilities.authorise(driver, credentials);
                 traversal.minTraverse(from, to, path , Constants.ALL_PEOPLE);
             } catch (InterruptedException | IOException | WebDriverException e) {
                 System.out.println(e.getMessage());

@@ -102,11 +102,11 @@ class PeopleTraversal {
                 try {
                     GenericScrapper.searchPerson(driver, query);
 
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
 
                     String info = parseElementsList();
 
-                    Thread.sleep(5000);
+                    Thread.sleep(1000);
 
                     writer.println(info);
 
@@ -125,22 +125,22 @@ class PeopleTraversal {
         driver.quit();
     }
 
-    private String parseElementsList() throws InterruptedException {
+    private String parseElementsList() {
         List<WebElement> elements = new ArrayList<>();
 
         innerScrapper(driver, elements);
 
         StringBuilder result = new StringBuilder("{ ");
-        for (int i = 0; i < elements.size(); i++) {
-            if(elements.get(i).getText() != null) {
-                result.append(elements.get(i).getText()).append(" ");
+        for (WebElement element : elements) {
+            if (element.getText() != null) {
+                result.append(element.getText()).append(" ");
             }
         }
 
         return result.insert(result.length() - 1, " }").toString();
     }
 
-    private void innerScrapper(WebDriver driver, List<WebElement> elements) throws InterruptedException {
+    private void innerScrapper(WebDriver driver, List<WebElement> elements) {
         try {
             elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[1]/div")));
             elements.add(driver.findElement(By.xpath("//div[@id='page_info_wrap']/div[2]/div[1]/div[2]/a[1]")));

@@ -54,17 +54,17 @@ class GenericScrapper {
     }
 
     static void searchPerson(WebDriver driver, String query) throws InterruptedException, WebDriverException {
-        Thread.sleep(random.nextInt(1000));
+        Thread.sleep(1000);
         driver.findElement(By.xpath("//div[@id='search_query_wrap']/div/div/input")).clear();
-        Thread.sleep(random.nextInt(1000));
+        Thread.sleep(1000);
         driver.findElement(By.xpath("//div[@id='search_query_wrap']/div/div/input")).sendKeys(query);
-        Thread.sleep(random.nextInt(1000));
+        Thread.sleep(random.nextInt(2000));
         driver.findElement(By.xpath("//div[@id='search_query_wrap']/div/div/input")).sendKeys(Keys.ENTER);
-        Thread.sleep(random.nextInt(1000));
+        Thread.sleep(random.nextInt(2000));
 
         driver.findElement(By.xpath("//div[@id='results']/div/div[3]/div/a")).click();
 
-        Thread.sleep(random.nextInt(1000));
+        Thread.sleep(2000);
     }
 
 }

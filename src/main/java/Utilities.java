@@ -39,7 +39,7 @@ class Utilities {
         System.setProperty("webdriver.chrome.driver", Utilities.getProjectPath().concat("/chromedriver"));
 
         ChromeOptions options = new ChromeOptions();
-        //options.addArguments("--headless");
+     //   options.addArguments("--headless");
 
         return new ChromeDriver(options);
     }
